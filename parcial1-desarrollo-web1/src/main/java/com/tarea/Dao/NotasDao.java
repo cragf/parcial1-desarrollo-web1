@@ -19,7 +19,7 @@ public class NotasDao {
                         "nt.lengua\r\n" + //
                         "FROM notas nt\r\n" + //
                         "LEFT JOIN estudiantes es on es.IDestudiantes = nt.ID_estudiante\r\n" + //
-                        "WHERE nt.mes = " + mes;
+                        "WHERE nt.mes = '" + mes + "'";
 
         
         try (PreparedStatement ps = conection.Conectar().prepareStatement(consulta)) {
@@ -33,24 +33,9 @@ public class NotasDao {
                 
             }
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
-        System.out.printf("%-3s %-15s %-15s %-10s %-10s %-10s %-10s %-10s %-10s%n", 
-            "id", "Nombre", "apellido", "Lengua", "Matematica", "Naturales", "Sociales", "Promedio", "Literal"
-            );
-            System.out.println("==================================================================================================");
-        for (Notas n: lista) {
-            System.out.printf("%-5s %-15s %-15s %-10d %-10d %-10d %-10d %-10d %-10c%n", 
-                n.getId(),
-
-                n.getLengua(), 
-                n.getMatematica(), 
-                n.getNaturales(), 
-                n.getSociales(), 
-                n.getSociales(),
-                n.obtenerLiteral()
-                );
-        }
+        
         
         return lista;
     
