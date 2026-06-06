@@ -1,6 +1,5 @@
-package com.tarea;
+package com.tarea.Model;
 
-import java.util.ArrayList;
 
 public class Notas {
 
@@ -67,13 +66,5 @@ public class Notas {
             return literal[4];
         }
     }
-       
-    ArrayList<Estudiante> estudiantes = new ArrayList<>();
-    ArrayList<Notas> meses = new ArrayList<>();
-    public void agregarEstudiante(String nombre, String apellido, int lengua, int matematica, int naturales, int sociales){
-        Estudiante estudiante = new Estudiante(nombre, apellido, lengua, matematica, naturales, sociales);
-        estudiantes.add(estudiante);
-    }
-
     
 }
