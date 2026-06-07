@@ -10,7 +10,6 @@ public class Notas {
         this.matematica = matematica;
         this.naturales = naturales;
         this.sociales = sociales;
-        this.promedio = (lengua + matematica + naturales + sociales) / 4;
     }
     private int id;
     public Estudiante estudiante;
@@ -21,14 +20,8 @@ public class Notas {
         this.id = id;
     }
     public char[] literal = {'A', 'B', 'C', 'D', 'F'};
-    private int lengua=0, matematica=0, naturales=0, sociales=0, promedio=0;
+    private int lengua=0, matematica=0, naturales=0, sociales=0;
 
-    public int getPromedio() {
-        return promedio;
-    }
-    public void setPromedio(int promedio) {
-        this.promedio = promedio;
-    }
     public int getSociales() {
         return sociales;
     }
@@ -54,13 +47,14 @@ public class Notas {
         this.lengua = lengua;
     }
     public char obtenerLiteral(){
+        double promedio = (lengua + matematica + naturales + sociales) / 4;
         if (promedio >= 90) {
             return literal[0];
-        } else if (promedio >= 80) {
+        } else if (promedio >= 80 && promedio < 90) {
             return literal[1];
-        } else if (promedio >= 70) {
+        } else if (promedio >= 70 && promedio < 80) {
             return literal[2];
-        } else if (promedio >= 60) {
+        } else if (promedio >= 60 && promedio < 70) {
             return literal[3];
         } else {
             return literal[4];
