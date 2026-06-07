@@ -13,15 +13,15 @@ public class EstudianteDao {
         String consulta = "SELECT es.IDestudiantes, es.nombre FROM estudiantes es";
 
         try (PreparedStatement ps = conection.Conectar().prepareStatement(consulta);
-            ResultSet rs = ps.executeQuery()) { // ✅ ResultSet dentro del try-with-resources
+            ResultSet rs = ps.executeQuery()) { 
 
             while (rs.next()) {
-                String[] nombre = rs.getString("nombre").split(" ", 2); // ✅ dentro del loop, límite 2
+                String[] nombre = rs.getString("nombre").split(" ", 2);
 
                 Estudiante estudiante = new Estudiante(null, null, 0);
                 estudiante.setId(rs.getInt("IDestudiantes"));
                 estudiante.setNombre(nombre[0]);
-                estudiante.setApellido(nombre.length > 1 ? nombre[1] : ""); // ✅ evita ArrayIndexOutOfBounds
+                estudiante.setApellido(nombre.length > 1 ? nombre[1] : "");
                 lista.add(estudiante);
             }
 
