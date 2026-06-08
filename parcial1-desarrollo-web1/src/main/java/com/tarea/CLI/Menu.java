@@ -102,7 +102,7 @@ public class Menu {
                 String nombre = "";
                 int[] i = new int[5];
                 EstudianteDao ed = new EstudianteDao();
-                
+
                 System.out.println("Ingrese el nombre del estudiante que se agregara al registro de este mes: ");
                     ArrayList<Estudiante> lista = ed.cargar(conection);
                     for (Estudiante o : lista) {
@@ -119,13 +119,13 @@ public class Menu {
                 }else {
                     System.out.println("Escriba las notas del estudiante:");
                     System.out.print("Matematica: ");
-                    i[0] = sca.nextInt();
+                    i[0] = (int) pedirNota(sca, "Matematica");
                     System.out.print("Naturales: ");
-                    i[1] = sca.nextInt();
+                    i[1] = (int) pedirNota(sca, "Naturales");
                     System.out.print("Sociales: ");
-                    i[2] = sca.nextInt();
+                    i[2] = (int) pedirNota(sca, "Sociales");
                     System.out.print("Lengua: ");
-                    i[3] = sca.nextInt();
+                    i[3] = (int) pedirNota(sca, "Lengua");
                     sca.nextLine(); // Limpiar el buffer
                     notasDao.registrar(s, conection, sca, i, nombre);
                     menu = false;
@@ -137,5 +137,18 @@ public class Menu {
             }
         }
      
+    }
+    public static double pedirNota(Scanner scanner, String materia) {
+        while (true) {
+            try {
+                double nota = Double.parseDouble(scanner.nextLine().trim());
+                if (nota >= 0 && nota <= 100) {
+                    return nota;
+                }
+                System.out.print("La nota de " + materia + " debe estar entre 0 y 100. Intente de nuevo: ");
+            } catch (NumberFormatException e) {
+                System.out.print(materia + " debe ser un número válido: ");
+            }
+        }
     }
 }
