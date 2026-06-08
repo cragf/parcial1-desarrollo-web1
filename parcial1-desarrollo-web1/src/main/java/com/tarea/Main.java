@@ -1,6 +1,6 @@
 package com.tarea;
 
-import com.tarea.Menu.Menu;
+import com.tarea.CLI.Menu;
 import com.tarea.conection.ConectionDB;
 
 public class Main {

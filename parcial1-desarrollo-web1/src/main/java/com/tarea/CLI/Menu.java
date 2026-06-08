@@ -1,4 +1,4 @@
-package com.tarea.Menu;
+package com.tarea.CLI;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -101,9 +101,14 @@ public class Menu {
                 NotasDao notasDao = new NotasDao();
                 String nombre = "";
                 int[] i = new int[5];
-                System.out.println("Ingrese el nombre del estudiante que se agregara al registro de este mes: ");
-                nombre = sca.nextLine();
                 EstudianteDao ed = new EstudianteDao();
+                
+                System.out.println("Ingrese el nombre del estudiante que se agregara al registro de este mes: ");
+                    ArrayList<Estudiante> lista = ed.cargar(conection);
+                    for (Estudiante o : lista) {
+                        System.out.println("- " + o.getNombre() + " " + o.getApellido());
+                    }
+                nombre = sca.nextLine();
 
                 Estudiante es = ed.buscar(conection, nombre);
 
@@ -113,10 +118,6 @@ public class Menu {
                     System.out.println("Este estudiante ya tiene un registro");
                 }else {
                     System.out.println("Escriba las notas del estudiante:");
-                    ArrayList<Estudiante> lista = ed.cargar(conection);
-                    for (Estudiante o : lista) {
-                        System.out.println("- " + o.getNombre() + " " + o.getApellido());
-                    }
                     System.out.print("Matematica: ");
                     i[0] = sca.nextInt();
                     System.out.print("Naturales: ");
